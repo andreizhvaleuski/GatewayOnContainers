@@ -1,0 +1,32 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "service1",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/service1",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "service2",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/service2",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ]
+}

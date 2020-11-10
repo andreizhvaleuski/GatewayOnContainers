@@ -1,6 +1,5 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as build
 WORKDIR /app
-EXPOSE 5000
 
 COPY "Service1.csproj" "Service1.csproj"
 RUN dotnet restore "Service1.csproj"
@@ -13,11 +12,9 @@ WORKDIR /publish
 COPY --from=build /app .
 RUN dotnet publish "Service1.csproj" -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 as runtime
 WORKDIR /app
 
 COPY --from=publish /publish/out .
-
-ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
 
 ENTRYPOINT [ "dotnet", "Service1.dll" ]

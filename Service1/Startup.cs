@@ -16,6 +16,8 @@ namespace Service1
         {
             app.UseRouting();
 
+            app.UseHttpsRedirection();
+
             app.UseEndpoints(
                 endpoints =>
                 {
